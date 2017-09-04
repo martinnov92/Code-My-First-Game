@@ -3,6 +3,8 @@
     var canvas = document.getElementById('gameCanvas');
     var canvasContext = canvas.getContext('2d');
 
+    setCanvasDimension();
+
     // ball vars
     var ballX = 50;
     var ballY = 50;
@@ -36,6 +38,8 @@
 
     canvas.addEventListener('mousedown', handleMouseClick);
 
+    window.addEventListener('resize', setCanvasDimension);
+
     // setInterval as frames per seconds
     var framesPerSecond = 30;
     setInterval(function() {
@@ -43,6 +47,11 @@
         draw();
         // console.log(ballX, ballY);
     }, 1000 / framesPerSecond);
+
+    function setCanvasDimension() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
 
     function calculateMousePos(e) {
         var rect = canvas.getBoundingClientRect();
